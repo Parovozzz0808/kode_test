@@ -9,19 +9,14 @@ const Container = styled.section`
     background: rgba(255, 255, 255, 1); 
 `;
 
-const Content = styled.div`
-    height: 80vh;
-`
 
 function People() {
     return (
         <Container>
             <TopAppBar/>
-            <Content>
                 <NavLink to="details">
                     Alice
                 </NavLink>
-            </Content>
 
         </Container>
     );

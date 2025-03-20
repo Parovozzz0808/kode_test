@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
 const TabsGroup = styled.div`
-    
+    margin-left: 5px;
 `;
 
 const Button = styled.button`
     background-color: transparent;
-    border: 1px solid transparent;
+    border: 2px solid transparent;
     border-radius: 0;
     color: rgba(151, 151, 155, 1);
 

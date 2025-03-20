@@ -3,14 +3,14 @@ import SortButton from "../../assets/sort.svg";
 // import SortActiveButton from "../../assets/sortActive.svg";
 
 const Button = styled.button`
-    margin-left: 60rem;
+    margin-left: 57rem;
 `;
 
 function Sort() {
     return (
         <>
             <Button>
-                <img src={SortButton} alt="" />
+                <img src={SortButton} alt="/" />
             </Button>
         </>
     )

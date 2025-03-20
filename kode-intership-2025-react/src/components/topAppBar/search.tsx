@@ -4,6 +4,7 @@ import SearchButton from "../../assets/search.svg";
 import Sort from "./sort";
 
  const Title = styled.h1`
+    padding-left: 24px;
     font-size: 24px;
     font-weight: 700;
     line-height: 28px;
@@ -16,9 +17,26 @@ import Sort from "./sort";
     justify-content: space-between;
     max-width: 98%;
     padding: 8px 12px;
-    border-radius: 16px;
+    margin: 0 16px;
+    border-radius: 40px;
     border: 1px solid transparent;
     background: rgba(247, 247, 248, 1);     
+ `
+
+ const Button = styled.button`
+    /* padding-left: 16px; */
+ `
+
+ const Input = styled.input`
+    background-color: transparent;
+    border: none;
+
+    &::placeholder {
+        color: rgba(195, 195, 198, 1);
+    }
+    &:focus {
+        outline: none;
+    }
  `
 
  function Search() {
@@ -26,10 +44,10 @@ import Sort from "./sort";
         <div>
             <Title>Поиск</Title>
             <SearchField>
-                <button>
+                <Button>
                     <img src={SearchButton}/>
-                </button>
-                <input placeholder="Введите имя, тег, почту..." type="text" />
+                </Button>
+                <Input placeholder="Введите имя, тег, почту..." type="text" />
                 <Sort/>
             </SearchField>
         </div>

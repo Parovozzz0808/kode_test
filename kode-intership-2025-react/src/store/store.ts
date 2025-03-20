@@ -1,11 +1,9 @@
-import { createStore, applyMiddleware } from 'redux';
-import rootReducer from "./index";
-import { thunk, ThunkDispatch } from 'redux-thunk';
+// src/store.js
+import { configureStore } from '@reduxjs/toolkit';
+import employeesReducer from './slices/employeesSlice/employeesSlice';
 
-const store = createStore(rootReducer, applyMiddleware(thunk));
-
-export type RootState = ReturnType<typeof rootReducer>;
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type AppDispatch = ThunkDispatch<RootState, undefined, any>;
-
-export default store;
+export const store = configureStore({
+  reducer: {
+    employees: employeesReducer, // Добавьте свои редюсеры здесь
+  },
+});

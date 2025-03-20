@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
@@ -26,16 +27,16 @@ interface Employee {
     phone: string
 }
 
-interface ListProps {
-    employees: Employee[]
-}
+// interface ListProps {
+//     employees: Employee[]
+// }
 
-function employeeList({ employees }: ListProps) {
-    
+function employeeList() {
+    const employees = useSelector((state) => state.employees.data);
        
     return (
             <List>
-                {employees.map((employee: Employee) => (
+                {!!employees.length && employees.map((employee: Employee) => (
                     <NavLink key={employee.id} to={`/details/${employee.id}`}>
                         <ListItem>
                             <img style={{borderRadius: '50%'}} src={employee.avatarUrl} alt="/"/>

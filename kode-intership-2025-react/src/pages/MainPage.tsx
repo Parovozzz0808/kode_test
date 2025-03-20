@@ -1,8 +1,10 @@
 import styled from "styled-components";
 import TopAppBar from "../components/topAppBar/topAppBar";
 import { useEffect, useState } from "react";
-import { fetchEmployees } from '../api/fetchEmployees';
+// import { fetchEmployees } from '../api/fetchEmployees';
 import List from "../components/employeeList";
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchEmployees } from "../store/slices/employeesSlice/thunks/fetchEmployees";
 
 
 const Container = styled.section`
@@ -12,21 +14,46 @@ const Container = styled.section`
 `;
 
 function MainPage() {
-    const[employees, setEmployees] = useState<[]>([]);
+    // const[allDepartments, setAllDepartments] = useState<[]>([])
+
+    const dispatch = useDispatch();
+    // const employees = useSelector((state) => state.employees.data);
+    const tabFilter = useSelector((state) => state.employees.tabFilter);
 
     useEffect(() => {
-        const fetchData = async () => {
-            const data = await fetchEmployees();
-            setEmployees(data.items);
-            localStorage.setItem('EmployeesList', JSON.stringify(data.items));
+        // const fetchData = async () => {
+        //     const data = await fetchEmployees();
+        //     const fetchedEmployees = data.items;
+        //     setEmployees(fetchedEmployees);
+
+        //     const allDepartmentsMass = [];
+
+        //     fetchedEmployees.forEach((employee) => {
+        //         if (allDepartmentsMass.length && allDepartmentsMass.find(department => department === employee.department) ) {
+        //             return;
+        //         } else {
+        //             allDepartmentsMass.push(employee.department)
+        //         }
+        //     })
+            
+        //     setAllDepartments(allDepartmentsMass);
+             
+        //     localStorage.setItem('EmployeesList', JSON.stringify(data.items));
+        // }
+        // fetchData()
+
+        
+        if (tabFilter) {
+            dispatch(fetchEmployees(tabFilter))
+            
         }
-        fetchData()
-    }, [setEmployees])
+        
+    }, [dispatch, tabFilter])
        
     return (
         <Container>
-            <TopAppBar/>
-            <List employees= {employees}/>
+            <TopAppBar />
+            <List />
         </Container>
     );
 }

@@ -9,11 +9,11 @@ const Container = styled.div`
     border-bottom: 1px solid rgba(195, 195, 198, 1);
 `
 
-function TopAppBar() {
+function TopAppBar({allDepartments}) {
     return (
         <Container>
             <Search/>
-            <Tabs/> 
+            <Tabs allDepartments={allDepartments} /> 
         </Container>
     )
 }

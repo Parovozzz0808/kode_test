@@ -25,7 +25,6 @@ const employeesSlice = createSlice({
       })
       // Обработка успешного завершения запроса
       .addCase(fetchEmployees.fulfilled, (state, action) => {
-        console.log(111);
         
         const fetchedEmployees = action.payload?.items;
         state.isLoading = false;

@@ -39,7 +39,7 @@ function employeeList() {
                 {!!employees.length && employees.map((employee: Employee) => (
                     <NavLink key={employee.id} to={`/details/${employee.id}`}>
                         <ListItem>
-                            <img style={{borderRadius: '50%'}} src={employee.avatarUrl} alt="/"/>
+                            <img style={{borderRadius: '50%'}} src={employee.avatarUrl} alt="photo"/>
                             <div>
                                 <h3>{employee.firstName} {employee.lastName}</h3>
                                 <p>{employee.department}</p>

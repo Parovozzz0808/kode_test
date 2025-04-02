@@ -48,7 +48,7 @@ function Tabs() {
         <TabsGroup>
             {!!allDepartments.length &&
             <>
-                <Button>All</Button>
+                <Button onClick={() => onTabClick('all')}>All</Button>
 
                 {allDepartments.map((department: IDepartments, index) => {
                     return <Button $isActive={department === activeTabFilter} onClick={() => onTabClick(department)} key={index}>{IDepartments[department]}</Button>

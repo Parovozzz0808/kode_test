@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import SortButton from "../../assets/sort.svg";
-// import SortActiveButton from "../../assets/sortActive.svg";
 
 const Button = styled.button`
     margin-left: 57rem;

@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import TopAppBar from "../components/topAppBar/topAppBar";
-import { useEffect, useState } from "react";
-// import { fetchEmployees } from '../api/fetchEmployees';
+import { useEffect } from "react";
 import List from "../components/employeeList";
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchEmployees } from "../store/slices/employeesSlice/thunks/fetchEmployees";
@@ -14,38 +13,12 @@ const Container = styled.section`
 `;
 
 function MainPage() {
-    // const[allDepartments, setAllDepartments] = useState<[]>([])
-
     const dispatch = useDispatch();
-    // const employees = useSelector((state) => state.employees.data);
     const tabFilter = useSelector((state) => state.employees.tabFilter);
 
     useEffect(() => {
-        // const fetchData = async () => {
-        //     const data = await fetchEmployees();
-        //     const fetchedEmployees = data.items;
-        //     setEmployees(fetchedEmployees);
-
-        //     const allDepartmentsMass = [];
-
-        //     fetchedEmployees.forEach((employee) => {
-        //         if (allDepartmentsMass.length && allDepartmentsMass.find(department => department === employee.department) ) {
-        //             return;
-        //         } else {
-        //             allDepartmentsMass.push(employee.department)
-        //         }
-        //     })
-            
-        //     setAllDepartments(allDepartmentsMass);
-             
-        //     localStorage.setItem('EmployeesList', JSON.stringify(data.items));
-        // }
-        // fetchData()
-
-        
         if (tabFilter) {
-            dispatch(fetchEmployees(tabFilter))
-            
+            dispatch(fetchEmployees(tabFilter))  
         }
         
     }, [dispatch, tabFilter])

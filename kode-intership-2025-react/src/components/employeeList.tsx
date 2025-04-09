@@ -27,9 +27,6 @@ interface Employee {
     phone: string
 }
 
-// interface ListProps {
-//     employees: Employee[]
-// }
 
 function employeeList() {
     const employees = useSelector((state) => state.employees.data);

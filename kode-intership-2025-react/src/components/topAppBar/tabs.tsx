@@ -13,7 +13,7 @@ const Button = styled.button`
     border-radius: 0;
     color: ${(props) => props.$isActive ? 'rgba(5, 5, 16, 1)' : 'rgba(151, 151, 155, 1)'} ;
 
-    &:active {
+    &:focus, :focus-visible {
         color: rgba(5, 5, 16, 1);
         border-bottom: 2px solid rgba(101, 52, 255, 1);
     }
@@ -48,7 +48,7 @@ function Tabs() {
         <TabsGroup>
             {!!allDepartments.length &&
             <>
-                <Button onClick={() => onTabClick('all')}>All</Button>
+                <Button autoFocus onClick={() => onTabClick('all')}>All</Button>
 
                 {allDepartments.map((department: IDepartments, index) => {
                     return <Button $isActive={department === activeTabFilter} onClick={() => onTabClick(department)} key={index}>{IDepartments[department]}</Button>

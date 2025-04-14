@@ -13,7 +13,7 @@ const ListItem = styled.li`
     & img {
        margin-right: 16px;
     }
-`
+`;
 
 interface Employee {
     id: string,
@@ -28,15 +28,19 @@ interface Employee {
 }
 
 
-function employeeList() {
-    const employees = useSelector((state) => state.employees.data);
+function EmployeeList() {
+    const employees = useSelector((state) => 
+        state.employees.filteredData || state.employees.data
+    );
+
+
        
     return (
             <List>
                 {!!employees.length && employees.map((employee: Employee) => (
                     <NavLink key={employee.id} to={`/details/${employee.id}`}>
                         <ListItem>
-                            <img style={{borderRadius: '50%'}} src={employee.avatarUrl} alt="photo"/>
+                            <img style={{borderRadius: '50%'}} src={employee.avatarUrl} alt="img"/>
                             <div>
                                 <h3>{employee.firstName} {employee.lastName}</h3>
                                 <p>{employee.department}</p>
@@ -48,4 +52,4 @@ function employeeList() {
     );
 }
 
-export default employeeList;
+export default EmployeeList;

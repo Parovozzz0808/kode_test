@@ -1,9 +1,9 @@
 import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import calculateAge from "../utils/calculateAge";
 import Arrow from "../assets/arrow.png";
-import employeeList from "../components/employeeList";
+import { changeTabFilter } from "../store/slices/employeesSlice/employeesSlice";
 
 interface Employee {
     id: string,
@@ -43,10 +43,8 @@ const BottomCard = styled.div`
     justify-content: space-between;
 `
 
-
-
-
 function DetailsCard() {
+    const dispath = useDispatch();
     const userId = window.location.pathname.split('/details/')[1];
     const employees = useSelector((state) => state.employees.data);  
     const employee = employees.find((employee: Employee) => (employee.id === userId));
@@ -54,13 +52,17 @@ function DetailsCard() {
     const birthdayUser = birthdayUserFormat.toLocaleDateString("ru-Ru", {year: "numeric", month: "long", day: "numeric",})
     const userAge = calculateAge(employee.birthday);
 
+    const onButtonClick = (tabFilter) => {
+        dispath(changeTabFilter(tabFilter))
+    }
+
 
     return (
         <>
             <Card key={employee.id}>
                 <TopCard>
                     <NavLink style={{position: 'relative', left: '-48%'}} to="/">
-                        <button onClick={() => {employeeList()}}>
+                        <button onClick={() => onButtonClick('all')}>
                             <img src={Arrow} alt="back" />
                         </button>
                     </NavLink>

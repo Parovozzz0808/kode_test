@@ -3,6 +3,7 @@ import { fetchEmployees } from './thunks/fetchEmployees';
 
 const initialState = {
   data: [],
+  filteredData: null,
   isLoading: false,
   error: '',
   tabFilter: 'all',
@@ -16,6 +17,9 @@ const employeesSlice = createSlice({
     changeTabFilter: (state, action) => {
       state.tabFilter = action.payload;
     },
+    setFilteredEmployees: (state, action) => {
+      state.filteredData = action.payload;
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -51,6 +55,7 @@ const employeesSlice = createSlice({
       });
   },
 });
-export const { changeTabFilter } = employeesSlice.actions;
+export const { changeTabFilter, setFilteredEmployees } = employeesSlice.actions;
+
 // Экспортируем редюсер
 export default employeesSlice.reducer;

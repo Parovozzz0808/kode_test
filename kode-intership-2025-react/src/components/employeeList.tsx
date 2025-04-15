@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import ErrorMessage from "./errorMessage";
 
 const List = styled.ul`
 `;
@@ -29,11 +30,24 @@ interface Employee {
 
 
 function EmployeeList() {
-    const employees = useSelector((state) => 
-        state.employees.filteredData || state.employees.data
-    );
+    const { data, filteredData, error, isLoading } = useSelector((state) => state.employees);
+    const employees = filteredData || data;
 
+    if(isLoading) {
+        return (
+            <div>Загрузка...</div>
+        )
+    }
 
+    if(error) {
+        console.log(error);
+        
+        return (
+            <>
+                <ErrorMessage/>
+            </>
+        )
+    }
        
     return (
             <List>

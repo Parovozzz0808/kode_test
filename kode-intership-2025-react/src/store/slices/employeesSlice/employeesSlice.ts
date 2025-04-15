@@ -5,7 +5,7 @@ const initialState = {
   data: [],
   filteredData: null,
   isLoading: false,
-  error: '',
+  error: null,
   tabFilter: 'all',
   departments: [],
 };
@@ -19,6 +19,9 @@ const employeesSlice = createSlice({
     },
     setFilteredEmployees: (state, action) => {
       state.filteredData = action.payload;
+    },
+    clearError: (state) => {
+      state.error = null;
     }
   },
   extraReducers: (builder) => {
@@ -51,11 +54,11 @@ const employeesSlice = createSlice({
       // Обработка ошибки
       .addCase(fetchEmployees.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.error.message;
+        state.error = action.payload as { status: number, message: string };
       });
   },
 });
-export const { changeTabFilter, setFilteredEmployees } = employeesSlice.actions;
+export const { changeTabFilter, setFilteredEmployees, clearError } = employeesSlice.actions;
 
 // Экспортируем редюсер
 export default employeesSlice.reducer;

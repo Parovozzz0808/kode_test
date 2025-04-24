@@ -1,9 +1,9 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { fetchEmployees } from './thunks/fetchEmployees';
 
 const initialState = {
   data: [],
-  filteredData: null,
+  filteredData: [],
   isLoading: false,
   error: null,
   tabFilter: 'all',
@@ -19,6 +19,31 @@ const employeesSlice = createSlice({
     },
     setFilteredEmployees: (state, action) => {
       state.filteredData = action.payload;
+    },
+    sortEmployees: (state, action: PayloadAction<'birthday' | 'alphabet'>) => {
+      const sortBy = action.payload;
+      const employees = state.filteredData || state.data;
+
+      if(sortBy === 'alphabet') {
+        employees.sort((a, b) =>  
+          a.firstName.localeCompare(b.firstName)
+        );
+      } else if (sortBy === 'birthday') {
+        employees.sort((a, b) => {
+          const dateA = new Date(a.birthday);
+          const dateB = new Date(b.birthday);
+
+          return (dateA.getMonth() - dateB.getMonth()) ||
+                  (dateA.getDate() - dateB.getDate());
+        });
+      }
+      console.log(employees);
+
+      if(state.filteredData) {
+        state.filteredData = [...employees];
+      } else {
+        state.data = [...employees];
+      }
     },
     clearError: (state) => {
       state.error = null;
@@ -58,7 +83,7 @@ const employeesSlice = createSlice({
       });
   },
 });
-export const { changeTabFilter, setFilteredEmployees, clearError } = employeesSlice.actions;
+export const { changeTabFilter, setFilteredEmployees, sortEmployees, clearError } = employeesSlice.actions;
 
 // Экспортируем редюсер
 export default employeesSlice.reducer;

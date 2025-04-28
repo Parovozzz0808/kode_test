@@ -47,7 +47,7 @@ const InputGroup = styled.div`
             fill: #050510;
         }
     }
- `
+ `;
 
  const Input = styled.input`
     background-color: transparent;
@@ -59,7 +59,7 @@ const InputGroup = styled.div`
     &:focus {
         outline: none;
     }
- `
+ `;
 
  function Search() {
     const dispatch = useDispatch();

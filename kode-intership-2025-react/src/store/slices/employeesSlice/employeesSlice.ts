@@ -37,12 +37,18 @@ const employeesSlice = createSlice({
                   (dateA.getDate() - dateB.getDate());
         });
       }
-      console.log(employees);
 
       if(state.filteredData) {
         state.filteredData = [...employees];
       } else {
         state.data = [...employees];
+      }
+    },
+    clearSort: (state) => {
+      if (state.filteredData) {
+        state.filteredData = [...state.data];
+      } else {
+        state.data = [...state.data];
       }
     },
     clearError: (state) => {
@@ -83,7 +89,7 @@ const employeesSlice = createSlice({
       });
   },
 });
-export const { changeTabFilter, setFilteredEmployees, sortEmployees, clearError } = employeesSlice.actions;
+export const { changeTabFilter, setFilteredEmployees, sortEmployees, clearSort, clearError } = employeesSlice.actions;
 
 // Экспортируем редюсер
 export default employeesSlice.reducer;
